@@ -122,7 +122,7 @@ var users= require('./routes/users');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'root',
+  user     : 'tempuser',
   password : '123',
   //database : 'iiti'
 });
