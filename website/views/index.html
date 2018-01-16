@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!--Start of meta tags-->
-	<meta charset="utf-8" />
-	<meta name="description" content="Industry 4.0 IIT Indore" />
-	<!--/.need change-->
-	<!--description about the website-->
-	<meta name="keywords" content="Smart manufacturing,iiti,IIT Indore" />
-	<meta name="author" content="Souvik Mandal">
-	<!--/.End of meta tags-->
-	<title>
-		Machine Status 
-	</title>
-	
-	<!--Adding boostrap css file link-->
-	<!--Need to change when uploading-->
-	
+  <!--Start of meta tags-->
+  <meta charset="utf-8" />
+  <meta name="description" content="Industry 4.0 IIT Indore" />
+  <!--/.need change-->
+  <!--description about the website-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Smart manufacturing,iiti,IIT Indore,industry 4.0,isw" />
+  <meta name="author" content="Souvik Mandal">
+  <!--/.End of meta tags-->
+  <title>
+    Machine Status
+  </title>
+  
+  <!--Adding boostrap css file link-->
+  <!--Need to change when uploading-->
+  
 
   <link href="css/bootstrap.css" rel="stylesheet" /> 
   <!-- pulls in the main bootstrap content we need -->
@@ -71,9 +72,9 @@
     </div>
     <div class="panel-group container-fluid" id="accordion">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#on">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#on">
+            <a>
             ON</a>
           </h4>
         </div>
@@ -108,7 +109,7 @@
               <input type="radio" id="printComplete" name="status" value="">
               <label for="printComplete"> Print completed   </label>
             </div>
-            <br/>				
+            <br/>       
             <div class="radioButton">
               <input type="radio" id="autoHoming" name="status" value="">
               <label for="autoHoming"> Auto homing    </label>
@@ -128,9 +129,9 @@
         </div>
       </div>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#failed_options">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#failed_options">
+        <a>
         FAILED</a>
       </h4>
     </div>
@@ -166,9 +167,9 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#idle_opn">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#idle_opn">
+        <a>
         IDLE</a>
       </h4>
     </div>
