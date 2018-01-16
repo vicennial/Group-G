@@ -3,7 +3,7 @@
 <head>
 	<!--Start of meta tags-->
 	<meta charset="utf-8" />
-	<meta name="description" content="Web site login page" />
+	<meta name="description" content="Industry 4.0 IIT Indore" />
 	<!--/.need change-->
 	<!--description about the website-->
 	<meta name="keywords" content="Smart manufacturing,iiti,IIT Indore" />
@@ -60,14 +60,16 @@
   </nav>
   <!--./End of header container-->
   </div>
-  <div class="mainContant">
-    <div class="jumbotron col-xs-6">
-        <h1>System Status</h1> 
-    </div>    
-    <div class="jumbotron col-xs-6 alert-success" role="alert">
-        <h1 >Active</h1>
-    </div>  
-    <div class="panel-group" id="accordion">
+  <div class="mainContant container-fluid">
+    <div class="container-fluid">
+      <div class="jumbotron col-sm-6 col-xs-12">
+          <h1>System Status</h1> 
+      </div>    
+      <div class="jumbotron col-xs-12 col-sm-6 alert-success" role="alert">
+          <h1 >Active</h1>
+      </div>  
+    </div>
+    <div class="panel-group container-fluid" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -77,41 +79,50 @@
         </div>
         <div id="on" class="panel-collapse collapse ">
           <div class="panel-body">
-            <label class="idle_sub_opn">
-              <input type="radio" name="status" value="#"> Printing
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="Printing" name="status" value="">
+              <label for="Printing"> Printing    </label>
+            </div>
             <br/>
-			<label class="idle_sub_opn">
-              <input type="radio" name="status" value=""> Product Loading 
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="productLoading" name="status" value="">
+              <label for="productLoading"> Product Loading     </label>
+            </div>
             <br/>
-			<label class="idle_sub_opn">
-              <input type="radio" name="status">Preheating
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="Preheating" name="status" value="">
+              <label for="Preheating"> Preheating    </label>
+            </div>
             <br/>
-			<label class="idle_sub_opn">
-              <input type="radio" name="status">Positioning the extruder  
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="posExtruder" name="status" value="">
+              <label for="posExtruder"> Positioning the extruder    </label>
+            </div>
             <br/>
-			<label class="idle_sub_opn">
-              <input type="radio" name="status">Print started 
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="printStarted" name="status" value="">
+              <label for="printStarted"> Print started   </label>
+            </div>
             <br/>
-			<label class="idle_sub_opn">
-              <input type="radio" name="status">Print completed 
-			</label>
+            <div class="radioButton">
+              <input type="radio" id="printComplete" name="status" value="">
+              <label for="printComplete"> Print completed   </label>
+            </div>
             <br/>				
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Auto homing 
-            </label>
+            <div class="radioButton">
+              <input type="radio" id="autoHoming" name="status" value="">
+              <label for="autoHoming"> Auto homing    </label>
+            </div>
             <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Ready to unloaded 
-            </label>
+            <div class="radioButton">
+              <input type="radio" id="readyToUnload" name="status" value="">
+              <label for="readyToUnload"> Ready to unloaded   </label>
+            </div>
             <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status"> Unloaded 
-            </label>
+            <div class="radioButton">
+              <input type="radio" id="Unloaded" name="status" value="">
+              <label for="Unloaded"> Unloaded  </label>
+            </div>
             <br/>
           </div>
         </div>
@@ -125,25 +136,31 @@
     </div>
     <div id="failed_options" class="panel-collapse collapse">
       <div class="panel-body">
-        <label class="idle_sub_opn">
-          <input type="radio" name="status" value="#">Component Assembly 1 
-        </label>
+        <div class="radioButton">
+          <input type="radio" id="ca1" name="status" value="">
+          <label for="ca1"> Component Assembly 1  </label>
+        </div>
         <br/>
-        <label class="idle_sub_opn">
-          <input type="radio" name="status" value="">Component Assembly 2  
-        </label>
+        <div class="radioButton">
+          <input type="radio" id="ca2" name="status" value="">
+          <label for="ca2"> Component Assembly 2  </label>
+        </div>
         <br/>
-        <label class="idle_sub_opn">
-          <input type="radio" name="status">Component Assembly 3 
-        </label>
+        <div class="radioButton">
+          <input type="radio" id="ca3" name="status" value="">
+          <label for="ca3"> Component Assembly 3  </label>
+        </div>
         <br/>
-        <label class="idle_sub_opn">
-          <input type="radio" name="status">Component Assembly 4   
-        </label>
+        <div class="radioButton">
+          <input type="radio" id="ca4" name="status" value="">
+          <label for="ca4"> Component Assembly 4  </label>
+        </div>
         <br/>
-        <label class="idle_sub_opn">
-          <input type="radio" name="status">Component Assembly 5  
-        </label>
+        <div class="radioButton">
+          <input type="radio" id="ca5" name="status" value="">
+          <label for="ca5"> Component Assembly 5  </label>
+        </div>
+
         <br/>
       </div>
     </div>
@@ -158,42 +175,51 @@
     <div id="idle_opn" class="panel-collapse collapse">
       <div class="panel-body">
         <h3>No Demand</h3>
-          <label class="idle_sub_opn">
-               <input type="radio" name="status" value="#">No product to load 
-            </label>
-            <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status" value="">Product scheduled to load  
-            </label>
-            <h3>Material Unavailable</h3>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">No Material to load
-            </label>
-            <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Material refilled  <br/>
-            </label>
-            <h3>Power Failure</h3>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Power gone <br/>
-            </label>
-            <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Power resume <br/>
-            </label>
-            <h3>Operator Unavailable</h3>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Operator busy with other work <br/>
-            </label>
-            <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Operator Absent <br/>
-            </label>
-            <br/>
-            <label class="idle_sub_opn">
-              <input type="radio" name="status">Operator arrive <br/>
-            </label>
-            <br/>
+        <div class="radioButton">
+          <input type="radio" id="noProduct" name="status" value="">
+          <label for="noProduct"> No product to load  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="productSheduled" name="status" value="">
+          <label for="productSheduled"> Product scheduled to load   </label>
+        </div>
+        <h3>Material Unavailable</h3>
+        <div class="radioButton">
+          <input type="radio" id="noMaterial" name="status" value="">
+          <label for="noMaterial"> No Material to load  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="materialRefilled" name="status" value="">
+          <label for="materialRefilled"> Material refilled </label>
+        </div>
+        <h3>Power Failure</h3>
+        <div class="radioButton qqq">
+          <input type="radio" id="powerGone" name="status" value="">
+          <label for="powerGone"> Power gone </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="powerResume" name="status" value="">
+          <label for="powerResume"> Power resume </label>
+        </div>
+        <h3>Operator Unavailable</h3>
+        <div class="radioButton">
+          <input type="radio" id="operatorBusy" name="status" value="">
+          <label for="operatorBusy"> Operator busy with other work  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="operatorAbsent" name="status" value="">
+          <label for="operatorAbsent"> Operator absent  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="operatorArrive" name="status" value="">
+          <label for="operatorArrive"> Operator arrive  </label>
+        </div>
+        <br/>
       </div>
     </div>
   </div>
@@ -214,6 +240,7 @@
     </div>
   <!--./End of top heading container-->
   </div>
+
   <script src="js/jquery.min.js"></script> <!-- /.jquery libraries -->
   <script src="js/bootstrap.min.js"></script> <!-- /.bootsrap libraries -->
 </body>
