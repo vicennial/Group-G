@@ -17,14 +17,10 @@
 .panel-group{
   	text-align: center;
 }
-.panel-title:hover {
-  font-size: 145%;
-
-}
 
 .panel-title>a:hover{
 	text-decoration :none;
-	text-orientation: bold;
+  
 }
 .panel-title{
   font-size: 130%;
