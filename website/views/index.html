@@ -77,7 +77,7 @@
     </div>
     <div class="panel-group container-fluid" id="accordion">
       <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#on">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#on" id="idOn">
           <h4 class="panel-title">
             <a style="cursor: default;">
             ON
@@ -135,7 +135,7 @@
         </div>
       </div>
   <div class="panel panel-default">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#failed_options">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#failed_options" id="idFailed">
       <h4 class="panel-title">
         <a style="cursor: default;">
         FAILED
@@ -174,7 +174,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#idle_opn">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#idle_opn" id="idIdle">
       <h4 class="panel-title">
         <a style="cursor: default;">
         IDLE
@@ -249,7 +249,26 @@
     </div>
   <!--./End of top heading container-->
   </div>
-
+  <script type="text/javascript">
+  $('#failed_options').on('show.bs.collapse', function () {
+        document.getElementById('idFailed').style.background= '#ff4444';
+      })
+      $('#failed_options').on('hide.bs.collapse', function () {
+        document.getElementById('idFailed').style.background= 'rgb(224,224,224)';
+      })
+      $('#idle_opn').on('show.bs.collapse', function () {
+        document.getElementById('idIdle').style.background= '#2196f3';
+      })
+      $('#idle_opn').on('hide.bs.collapse', function () {
+        document.getElementById('idIdle').style.background= 'rgb(224,224,224)';
+      })
+      $('#on').on('show.bs.collapse', function () {
+        document.getElementById('idOn').style.background= '#00C851';
+      })
+      $('#on').on('hide.bs.collapse', function () {
+        document.getElementById('idOn').style.background= 'rgb(224,224,224)';
+      })
+</script>
   <script src="js/bootstrap.min.js"></script> <!-- /.bootstrap libraries -->
 </body>
 </html>
