@@ -33,13 +33,16 @@
     <!--/.End of boostrap file link-->
     <link href="css/page.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-    function RadioClick() {
-      var data = {};
-      data.machine = "Machine1";
-      data.status = $("input[type='radio'][name='status']:checked").val();
 
-      $.ajax({
+    <!-- Print the Selected Status to Console -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+         $(".radioButton").on("change", function () {
+          var data = {};
+          data.machine = "Machine1";
+          data.status = this.innerText;
+         
+          $.ajax({
             type: 'POST',
             data: JSON.stringify(data),
                 contentType: 'application/json',
@@ -49,7 +52,8 @@
                             console.log(JSON.stringify(data));
                         }
                     });
-    }
+        });
+      });
     </script>
 </head>
 <body style="overflow-y: scroll;" >
@@ -102,47 +106,47 @@
         <div id="on" class="panel-collapse collapse ">
           <div class="panel-body">
             <div class="radioButton">
-              <input type="radio" id="Printing" name="status" value="Printing" onclick="RadioClick()">
+              <input type="radio" id="Printing" name="status" value="Printing">
               <label for="Printing"> Printing    </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="productLoading" name="status" value="productLoading" onclick="RadioClick()">
+              <input type="radio" id="productLoading" name="status" value="productLoading">
               <label for="productLoading"> Product Loading     </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="Preheating" name="status" value="Preheating" onclick="RadioClick()">
+              <input type="radio" id="Preheating" name="status" value="Preheating">
               <label for="Preheating"> Preheating    </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="posExtruder" name="status" value="posExtruder" onclick="RadioClick()">
+              <input type="radio" id="posExtruder" name="status" value="posExtruder">
               <label for="posExtruder"> Positioning the extruder    </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="printStarted" name="status" value="printStarted" onclick="RadioClick()">
+              <input type="radio" id="printStarted" name="status" value="printStarted">
               <label for="printStarted"> Print started   </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="printComplete" name="status" value="printComplete" onclick="RadioClick()">
+              <input type="radio" id="printComplete" name="status" value="printComplete">
               <label for="printComplete"> Print completed   </label>
             </div>
             <br/>       
             <div class="radioButton">
-              <input type="radio" id="autoHoming" name="status" value="autoHoming" onclick="RadioClick()">
+              <input type="radio" id="autoHoming" name="status" value="autoHoming">
               <label for="autoHoming"> Auto homing    </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="readyToUnload" name="status" value="readyToUnload" onclick="RadioClick()">
+              <input type="radio" id="readyToUnload" name="status" value="readyToUnload">
               <label for="readyToUnload"> Ready to unloaded   </label>
             </div>
             <br/>
             <div class="radioButton">
-              <input type="radio" id="Unloaded" name="status" value="Unloaded" onclick="RadioClick()">
+              <input type="radio" id="Unloaded" name="status" value="Unloaded">
               <label for="Unloaded"> Unloaded  </label>
             </div>
             <br/>
@@ -160,27 +164,27 @@
     <div id="failed_options" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="radioButton">
-          <input type="radio" id="ca1" name="status" value="ca1" onclick="RadioClick()">
+          <input type="radio" id="ca1" name="status" value="ca1">
           <label for="ca1"> Component Assembly 1  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="ca2" name="status" value="ca2" onclick="RadioClick()">
+          <input type="radio" id="ca2" name="status" value="ca2">
           <label for="ca2"> Component Assembly 2  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="ca3" name="status" value="ca3" onclick="RadioClick()">
+          <input type="radio" id="ca3" name="status" value="ca3">
           <label for="ca3"> Component Assembly 3  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="ca4" name="status" value="ca4" onclick="RadioClick()">
+          <input type="radio" id="ca4" name="status" value="ca4">
           <label for="ca4"> Component Assembly 4  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="ca5" name="status" value="ca5" onclick="RadioClick()">
+          <input type="radio" id="ca5" name="status" value="ca5">
           <label for="ca5"> Component Assembly 5  </label>
         </div>
 
@@ -200,47 +204,47 @@
       <div class="panel-body">
         <h3>No Demand</h3>
         <div class="radioButton">
-          <input type="radio" id="noProduct" name="status" value="noProduct" onclick="RadioClick()">
+          <input type="radio" id="noProduct" name="status" value="noProduct">
           <label for="noProduct"> No product to load  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="productSheduled" name="status" value="productSheduled" onclick="RadioClick()">
+          <input type="radio" id="productSheduled" name="status" value="productSheduled">
           <label for="productSheduled"> Product scheduled to load   </label>
         </div>
         <h3>Material Unavailable</h3>
         <div class="radioButton">
-          <input type="radio" id="noMaterial" name="status" value="noMaterial" onclick="RadioClick()">
+          <input type="radio" id="noMaterial" name="status" value="noMaterial">
           <label for="noMaterial"> No Material to load  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="materialRefilled" name="status" value="materialRefilled" onclick="RadioClick()">
+          <input type="radio" id="materialRefilled" name="status" value="materialRefilled">
           <label for="materialRefilled"> Material refilled </label>
         </div>
         <h3>Power Failure</h3>
         <div class="radioButton qqq">
-          <input type="radio" id="powerGone" name="status" value="powerGone" onclick="RadioClick()">
+          <input type="radio" id="powerGone" name="status" value="powerGone">
           <label for="powerGone"> Power gone </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="powerResume" name="status" value="powerResume" onclick="RadioClick()">
+          <input type="radio" id="powerResume" name="status" value="powerResume">
           <label for="powerResume"> Power resume </label>
         </div>
         <h3>Operator Unavailable</h3>
         <div class="radioButton">
-          <input type="radio" id="operatorBusy" name="status" value="operatorBusy" onclick="RadioClick()">
+          <input type="radio" id="operatorBusy" name="status" value="operatorBusy">
           <label for="operatorBusy"> Operator busy with other work  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="operatorAbsent" name="status" value="operatorAbsent" onclick="RadioClick()">
+          <input type="radio" id="operatorAbsent" name="status" value="operatorAbsent">
           <label for="operatorAbsent"> Operator absent  </label>
         </div>
         <br/>
         <div class="radioButton">
-          <input type="radio" id="operatorArrive" name="status" value="operatorArrive" onclick="RadioClick()">
+          <input type="radio" id="operatorArrive" name="status" value="operatorArrive">
           <label for="operatorArrive"> Operator arrive  </label>
         </div>
         <br/>
