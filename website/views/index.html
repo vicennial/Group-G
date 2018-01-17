@@ -41,6 +41,7 @@
           var data = {};
           data.machine = "Machine1";
           data.status = this.innerText;
+          data.parent_mode=$(this).parents()[2].firstChild.nextSibling.innerText.trim();
          
           $.ajax({
             type: 'POST',
