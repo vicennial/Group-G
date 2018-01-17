@@ -20,7 +20,7 @@
 
 .panel-title>a:hover{
 	text-decoration :none;
-  
+
 }
 .panel-title{
   font-size: 130%;
@@ -39,7 +39,7 @@
   font-size: 110%;
 }
 
-  .radioButton {
+.radioButton {
   display: inline-block;
   position: relative;
   padding: 0 6px;
@@ -78,4 +78,7 @@
   content: " ";
   display: block;
   background: #17A2B8;
+}
+.modal-open {
+    padding-right: 0px !important;
 }
