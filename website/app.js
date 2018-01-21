@@ -9,19 +9,22 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var router = express.Router();
 var Schema = mongoose.Schema;
-
+var cookieParser = require('cookie-parser');
+	
 //creating server
 var server = require('http').createServer(app);
 
+// Support JSON bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//Read Cookie
+app.use(cookieParser());
 // serves static files from public
 app.use(express.static(path.join(__dirname, 'public')));
 // serves files frow views
 app.use(express.static(path.join(__dirname, 'views')));
-// Support JSON bodies
-app.use(bodyParser.json());
 // Support URL-encoded bodies 						 
 app.use(bodyParser.urlencoded({ extended: true }));  
-
 
 //setting port
 app.set('port', (process.env.PORT || 3500));
@@ -43,21 +46,38 @@ app.post("/SendState", function(req, res) {
 //mongoose.model('isw',User);
 //mongoose.connect('mongodb://localhost:27017/');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-
 app.get('/',function(req,res)
 {
-    res.render('index');
+	res.redirect('index.html');
+    //res.render('index');
 });
 
 
 app.get('/MainPage',function(req,res)
 {
+	if (req.cookies.UserID == 'Machine1') {
+		console.log(req.cookies);
+		console.log("Redirect");
+		res.redirect('machine.html');
+	} else {
+		res.redirect('index.html');
+	}
+});
+
+app.get('/Logout', function(req,res) {
+	res.clearCookie("UserID");
+	res.redirect('index.html');
+});
+
+app.get('/machine',function(req,res)
+{
+	console.log("Redirect");
 	res.redirect('index.html');
 });
 
 app.get('/machine.html',function(req,res)
 {
+	console.log("Redirect");
 	res.redirect('index.html');
 });
 
@@ -84,7 +104,9 @@ app.post('/MainPage', function(req, res)
 				if (rnum > 0) {
 					if (result[0].uid == req.body.uid) {
 						console.log("Login Successful!");
-						res.redirect('/machine.html');
+						// Set cookie
+						res.cookie('UserID', req.body.uid)
+						res.redirect('/MainPage');
 					}
 				} else {
 					console.log("Wrong UID/Password");
