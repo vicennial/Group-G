@@ -83,6 +83,7 @@ app.get('/machine.html',function(req,res)
 
 app.post('/MainPage', function(req, res)
 {
+	console.log("connected");
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 		var dbo = db.db("isw");
@@ -106,7 +107,7 @@ app.post('/MainPage', function(req, res)
 						console.log("Login Successful!");
 						// Set cookie
 						res.cookie('UserID', req.body.uid)
-						res.redirect('/MainPage');
+						res.redirect('/machine.html');
 					}
 				} else {
 					console.log("Wrong UID/Password");
