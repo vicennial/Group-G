@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--Start of meta tags-->
+  <meta charset="utf-8" />
+  <meta name="description" content="Industry 4.0 IIT Indore" />
+  <!--/.need change-->
+  <!--description about the website-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Smart manufacturing,iiti,IIT Indore,industry 4.0,isw" />
+  <meta name="author" content="Souvik Mandal, Saptarshi Ghosh, Aravind Ravikumar, GVS Akhil, Rishika Patel">
+  <link rel="icon" href="img/favicon.png">
+  <!--/.End of meta tags-->
+  <title>
+    Machine Status
+  </title>
+  
+  <!--Adding boostrap css file link-->
+  <!--Need to change when uploading-->
+  
+
+  <link href="css/bootstrap.css" rel="stylesheet" /> 
+  <!-- pulls in the main bootstrap content we need -->
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!--/.End of boostrap file link-->
+    <link href="css/page.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <!-- Print the Selected Status to Console -->
+    <script src="js/sendState_updateJumbo.js"> </script>
+</head>
+<body style="overflow-y: scroll;" >
+<div id="box1 col-xs-12">
+  <nav class="navbar navbar-inverse navbar_ab navbar-fixed-top">
+      <div class="container-fluid">
+    
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand temp changecolor" href="#" style="font-size: 220%">ISW</a>
+        </div>
+
+    
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            <li >
+            <a href="#" class="navbar_links_font">Home 
+            <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            </ul>
+      </div>
+    </div>
+  </nav>
+  <!--./End of header container-->
+  </div>
+  <div class="mainContant container-fluid">
+    <div class="container-fluid">
+      <div class="jumbotron col-sm-6 col-xs-12">
+          <h1  style="text-align: center;">Manual Interface</h1> 
+      </div>    
+      <div class="jumbotron col-xs-12 col-sm-6 alert-success" role="alert">
+          <h1 style="text-align: center;" id="jumbotron" >Active</h1>
+      </div>  
+    </div>
+    <div class="panel-group container-fluid" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#on" id="idOn">
+          <h4 class="panel-title">
+            <a style="cursor: default;">
+            ON
+            </a>
+          </h4>
+        </div>
+        <div id="on" class="panel-collapse collapse ">
+          <div class="panel-body">
+            <div class="radioButton">
+              <input type="radio" id="Printing" name="status" value="Printing">
+              <label for="Printing"> Printing    </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="productLoading" name="status" value="productLoading">
+              <label for="productLoading"> Product Loading     </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="Preheating" name="status" value="Preheating">
+              <label for="Preheating"> Preheating    </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="posExtruder" name="status" value="posExtruder">
+              <label for="posExtruder"> Positioning the extruder    </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="printStarted" name="status" value="printStarted">
+              <label for="printStarted"> Print started   </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="printComplete" name="status" value="printComplete">
+              <label for="printComplete"> Print completed   </label>
+            </div>
+            <br/>       
+            <div class="radioButton">
+              <input type="radio" id="autoHoming" name="status" value="autoHoming">
+              <label for="autoHoming"> Auto homing    </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="readyToUnload" name="status" value="readyToUnload">
+              <label for="readyToUnload"> Ready to unloaded   </label>
+            </div>
+            <br/>
+            <div class="radioButton">
+              <input type="radio" id="Unloaded" name="status" value="Unloaded">
+              <label for="Unloaded"> Unloaded  </label>
+            </div>
+            <br/>
+          </div>
+        </div>
+      </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#failed_options" id="idFailed">
+      <h4 class="panel-title">
+        <a style="cursor: default;">
+        FAILED
+        </a>
+      </h4>
+    </div>
+    <div id="failed_options" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="radioButton">
+          <input type="radio" id="ca1" name="status" value="ca1">
+          <label for="ca1"> Component Assembly 1  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="ca2" name="status" value="ca2">
+          <label for="ca2"> Component Assembly 2  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="ca3" name="status" value="ca3">
+          <label for="ca3"> Component Assembly 3  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="ca4" name="status" value="ca4">
+          <label for="ca4"> Component Assembly 4  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="ca5" name="status" value="ca5">
+          <label for="ca5"> Component Assembly 5  </label>
+        </div>
+
+        <br/>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#idle_opn" id="idIdle">
+      <h4 class="panel-title">
+        <a style="cursor: default;">
+        IDLE
+        </a>
+      </h4>
+    </div>
+    <div id="idle_opn" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h3>No Demand</h3>
+        <div class="radioButton">
+          <input type="radio" id="noProduct" name="status" value="noProduct">
+          <label for="noProduct"> No product to load  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="productSheduled" name="status" value="productSheduled">
+          <label for="productSheduled"> Product scheduled to load   </label>
+        </div>
+        <h3>Material Unavailable</h3>
+        <div class="radioButton">
+          <input type="radio" id="noMaterial" name="status" value="noMaterial">
+          <label for="noMaterial"> No Material to load  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="materialRefilled" name="status" value="materialRefilled">
+          <label for="materialRefilled"> Material refilled </label>
+        </div>
+        <h3>Power Failure</h3>
+        <div class="radioButton qqq">
+          <input type="radio" id="powerGone" name="status" value="powerGone">
+          <label for="powerGone"> Power gone </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="powerResume" name="status" value="powerResume">
+          <label for="powerResume"> Power resume </label>
+        </div>
+        <h3>Operator Unavailable</h3>
+        <div class="radioButton">
+          <input type="radio" id="operatorBusy" name="status" value="operatorBusy">
+          <label for="operatorBusy"> Operator busy with other work  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="operatorAbsent" name="status" value="operatorAbsent">
+          <label for="operatorAbsent"> Operator absent  </label>
+        </div>
+        <br/>
+        <div class="radioButton">
+          <input type="radio" id="operatorArrive" name="status" value="operatorArrive">
+          <label for="operatorArrive"> Operator arrive  </label>
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY-->
+<div class="container-fluid cls_history col-xs-12">
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">History</button>
+
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            History<br>
+            ....
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--./End of top heading container-->
+  </div>
+  <script type="text/javascript">
+  $('#failed_options').on('show.bs.collapse', function () {
+        document.getElementById('idFailed').style.background= '#ff4444';
+      })
+      $('#failed_options').on('hide.bs.collapse', function () {
+        document.getElementById('idFailed').style.background= 'rgb(245,245,245)';
+      })
+      $('#idle_opn').on('show.bs.collapse', function () {
+        document.getElementById('idIdle').style.background= '#2196f3';
+      })
+      $('#idle_opn').on('hide.bs.collapse', function () {
+        document.getElementById('idIdle').style.background= 'rgb(245,245,245)';
+      })
+      $('#on').on('show.bs.collapse', function () {
+        document.getElementById('idOn').style.background= '#00C851';
+      })
+      $('#on').on('hide.bs.collapse', function () {
+        document.getElementById('idOn').style.background= 'rgb(245,245,245)';
+      })
+</script>
+  <script src="js/bootstrap.min.js"></script> <!-- /.bootstrap libraries -->
+</body>
+</html>

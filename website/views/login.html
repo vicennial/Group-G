@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--Start of meta tags-->
+  <meta charset="utf-8" />
+  <meta name="description" content="Industry 4.0 IIT Indore" />
+  <!--description about the website-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Smart manufacturing,iiti,IIT Indore,industry 4.0,isw" />
+  <meta name="author" content="Souvik Mandal, Saptarshi Ghosh, Aravind Ravikumar, GVS Akhil, Rishika Patel">
+  <link rel="icon" href="img/favicon.png">
+  <!--/.End of meta tags-->
+  <title>
+    Log in to machine
+  </title>
+  <link href="css/bootstrap.css" rel="stylesheet" /> 
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script> <!-- /.bootstrap libraries -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar_ab navbar-fixed-top">
+      <div class="container-fluid">
+    
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand temp changecolor" href="#" style="font-size: 220%">ISW</a>
+        </div>
+
+    
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            <li >
+            <a href="login.html" class="navbar_links_font">Home 
+            <span class="sr-only">(current)</span>
+            </a>
+            </li>
+            </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  
+	<div class="container-fluid main_contant">
+		<div class="col-md-2" ></div>
+		<div class="col-xs-12 col-md-8 fields" >
+			<div >
+					<div style="color: black;font-family: 'Merriweather', serif;"> <h1>Log in to machine</h1></div>
+					<form method="POST" action="/MainPage">
+					<div class="input-group ">
+				      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				      <input id="uid" type="text" class="form-control" name="uid" placeholder="username" required="required">
+				    </div>	
+				    <div class="input-group ">
+				      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				      <input id="pwd" type="password" class="form-control" name="pwd" placeholder="Password" required="required" >
+				    </div>
+				      <!--<button type="submit" class="button col-xs-11	"><span>Log In </span></button>-->
+				      <input type="submit" class="button col-xs-11	" value="Submit">
+				      </form>				
+			</div>    
+		</div>
+		<div class="col-md-2" ></div>
+	</div>
+</body>
+</html>

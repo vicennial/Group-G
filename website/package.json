@@ -9,6 +9,11 @@
   "author": "Group-G",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "bcrypt": "^1.0.3",
+    "connect-mongo": "^2.0.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.1"
   }
 }
