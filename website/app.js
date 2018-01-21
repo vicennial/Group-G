@@ -66,21 +66,32 @@ app.post('/MainPage', function(req, res)
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 		var dbo = db.db("isw");
+		var rnum = 0;
 		var query = { uid: req.body.uid, pwd: req.body.pwd };
+		dbo.collection("isw").count(query, function(err, numOfRecords) {
+			if (err) { 
+				throw err;
+			} else {
+				rnum = numOfRecords;
+				db.close();
+			}
+		});
+		
 		dbo.collection("isw").find(query).toArray(function(err, result) {
 			if (err) { 
 				throw err;
 			} else {
-			//console.log(result[0].uid);
-			if (result[0].uid == req.body.uid) {
-				console.log("Login Successful!");
-				res.redirect('/machine.html');
+				if (rnum > 0) {
+					if (result[0].uid == req.body.uid) {
+						console.log("Login Successful!");
+						res.redirect('/machine.html');
+					}
+				} else {
+					console.log("Wrong UID/Password");
+				}
+				db.close();
 			}
-			}
-			db.close();
+			
 		});
 	});
-
 });
-
-
