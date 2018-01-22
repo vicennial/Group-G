@@ -1,11 +1,9 @@
 '''
 This Python Script Generates the Machine Learning Training Data Set scattered across Different CSV Files
-and Put Together in a Single CSV File for Future Use.
+and Puts it together in a Single CSV File for Future Use.
 
 Python  : 3.6
 Modules : Numpy, Pandas, Glob
-
-Developer Note : Remove $ TODO (see below) to get complete Data Set
 
 '''
 
@@ -19,6 +17,7 @@ n = 315
 
 #Training_Data
 Data = np.zeros((n,7))
+No_of_Training = int(n*0.7)					#70% as Training Set. Rest are Testing Data Set
 
 #Path to Training Data
 path 				= "data/c1/"
@@ -43,9 +42,6 @@ for file in sorted(files):
 	Data[i, :] = X
 	i = i + 1
 
-	if (i > 3) :							# $ TODO : Remove to get complete DataSet
-		break								# $ TODO : ...
-
 
 #Read Y Data
 Ydata = read_csv("data/c1_wear.csv")
@@ -60,4 +56,5 @@ Data = np.c_[Data, np.zeros((n, 1))]
 Data[:,7] = Y
 
 #Save the Data as CSV File for Future Use
-np.savetxt("C1_Data.csv", Data, delimiter=",")
+np.savetxt("C1_Data_Train.csv", Data[0:No_of_Training,:], delimiter=",")
+np.savetxt("C1_Data_Test.csv",  Data[No_of_Training:n,:], delimiter=",")
