@@ -10,9 +10,11 @@ var MongoStore = require('connect-mongo')(session);
 var router = express.Router();
 var Schema = mongoose.Schema;
 var cookieParser = require('cookie-parser');
-	
+var uid;
 //creating server
 var server = require('http').createServer(app);
+var io=require('socket.io')(server);
+var socket = require('socket.io-client')('http://localhost:3100/');
 
 // Support JSON bodies
 app.use(bodyParser.json());
@@ -41,11 +43,6 @@ app.post("/SendState", function(req, res) {
 });
 
 
-//Query MongoDB for Login Request
-
-//mongoose.model('isw',User);
-//mongoose.connect('mongodb://localhost:27017/');
-
 app.get('/',function(req,res)
 {
 	res.redirect('index.html');
@@ -53,16 +50,16 @@ app.get('/',function(req,res)
 });
 
 
-app.get('/MainPage',function(req,res)
-{
-	if (req.cookies.UserID == 'Machine1') {
-		console.log(req.cookies);
-		console.log("Redirect");
-		res.redirect('machine.html');
-	} else {
-		res.redirect('index.html');
-	}
-});
+// app.get('/MainPage',function(req,res)
+// {
+// 	if (req.cookies.UserID == 'Machine1') {
+// 		console.log(req.cookies);
+// 		console.log("Redirect");
+// 		res.redirect('machine.html');
+// 	} else {
+// 		res.redirect('index.html');
+// 	}
+// });
 
 app.get('/Logout', function(req,res) {
 	res.clearCookie("UserID");
@@ -80,41 +77,26 @@ app.get('/machine.html',function(req,res)
 	console.log("Redirect");
 	res.redirect('index.html');
 });
-
+socket.on('connect', function () {
+	console.log("App.js Socket Connected");
+});
 app.post('/MainPage', function(req, res)
 {
 	console.log("connected");
-	MongoClient.connect(url, function(err, db) {
-		if (err) throw err;
-		var dbo = db.db("isw");
-		var rnum = 0;
-		var query = { uid: req.body.uid, pwd: req.body.pwd };
-		dbo.collection("isw").count(query, function(err, numOfRecords) {
-			if (err) { 
-				throw err;
-			} else {
-				rnum = numOfRecords;
-				db.close();
-			}
-		});
-		
-		dbo.collection("isw").find(query).toArray(function(err, result) {
-			if (err) { 
-				throw err;
-			} else {
-				if (rnum > 0) {
-					if (result[0].uid == req.body.uid) {
-						console.log("Login Successful!");
-						// Set cookie
-						res.cookie('UserID', req.body.uid)
-						res.redirect('/machine.html');
-					}
-				} else {
-					console.log("Wrong UID/Password");
-				}
-				db.close();
-			}
-			
-		});
+	var data={};
+	data.UserID=req.body.uid;
+	data.pwd=req.body.pwd;
+	// console.log(data);
+	socket.emit("login",data,function(data){
+		if(data=="True"){
+			console.log("Login successfull!");
+			uid=data.UserID;
+			res.redirect('/machine.html');
+		}
+		else{
+			console.log("Login attempt failed!");
+			uid='null';
+			res.redirect('/index.html');
+		}
 	});
 });
