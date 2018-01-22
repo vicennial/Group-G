@@ -38,7 +38,9 @@ server.listen(app.get('port'), '0.0.0.0', function () {
 
 //Body Parser : Print to Log the Value of Selected Machine State
 app.post("/SendState", function(req, res) {
-  console.log(JSON.stringify(req.body));
+	var obj=req.body;
+	obj.machine=uid;
+  console.log(JSON.stringify(obj));
   res.send(req.body);
 });
 
@@ -82,15 +84,15 @@ socket.on('connect', function () {
 });
 app.post('/MainPage', function(req, res)
 {
-	console.log("connected");
 	var data={};
 	data.UserID=req.body.uid;
 	data.pwd=req.body.pwd;
+	var user_id=data.UserID;
 	// console.log(data);
 	socket.emit("login",data,function(data){
 		if(data=="True"){
 			console.log("Login successfull!");
-			uid=data.UserID;
+			uid=user_id;
 			res.redirect('/machine.html');
 		}
 		else{
