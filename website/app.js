@@ -41,6 +41,7 @@ app.post("/SendState", function(req, res) {
 	var obj=req.body;
 	obj.machine=uid;
   console.log(JSON.stringify(obj));
+  socket.emit("state",obj);
   res.send(req.body);
 });
 

@@ -44,4 +44,7 @@ io.on('connection',function(client){
         }
         res(flag);
     });
+    client.on('state',function(data,res){
+        console.log(JSON.stringify(data));
+    });
 });
