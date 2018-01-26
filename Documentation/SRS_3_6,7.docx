@@ -1,0 +1,12 @@
+3.6
+[Since Data is fetched from the Main Server and sent back to the same, it is crucial that there is Connectivity between the Servers.
+The Web Portal on the Local Machine is also constrained by the Capacity of the Main Server. Requests from various Machines may be forced to queue which increases the fetch / write time affecting Performance.] //already present earlier
+Running the Machine Learning algorithm on the local machine require good analytical capacity. The amount of data produced will be in the order of 3gb/sec. 
+Connectivity between the main server and the local machines must be top notch as this data should be sent on request to the main server, and in the possible scenario of many such local machines requesting simultaneously there shouldn't be any crash or huge delay. 
+//anything like compatibility issues or software size issues? 
+The machine learning algorithm must be accurate to a good extent so that the predicted values are as much close as possible to the actual values. 
+//something about making webpage dynamic on all devices? 
+3.7
+The primary database management system that will be used is MongoDB. The local machines store the data obtained through various sensors and also the result after ML process in the local database. This data can be sent to the main server on request. 
+The main server has an “isw” database. This main database contains separate databases for all the different machines in the network. These are the databases which contains all the details of the machines in the network, including things like user id and password for validation, history of all states the machine has been in and the current state the machine is on. 
+//logical constraints? Data integritt? 
