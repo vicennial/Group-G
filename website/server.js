@@ -32,12 +32,11 @@ server.listen(app.get('port'), '0.0.0.0', function () {
 
 //Sending prediction request
 app.get('/send',function(req,res){
-    var data={};
-    data.name="test";
+    var data=["Hi","Bye","Cry"];
     socket.emit("getpred",data,function(res){
         console.log(res);
     });
-    console.log("Request sent to app.js!");
+    console.log("Prediction request sent to app.js!");
     res.send("Sent");
 });
 //Setting dummy users

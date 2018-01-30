@@ -11,6 +11,8 @@ var router = express.Router();
 var Schema = mongoose.Schema;
 var cookieParser = require('cookie-parser');
 var uid;
+//Python Shell
+var py = require('python-shell');
 //creating server
 var server = require('http').createServer(app);
 var io=require('socket.io')(server);
@@ -109,7 +111,13 @@ io.on('connection', function (client) {
 	client.on('getpred', function (data, res) {
 		console.log("Prediction Request Recieved!");
 		console.log(data);
-		var pred="True";
-		res(pred);
+		var options = {
+			args: data
+		};
+		py.run('test.py',options,function(err,ans){
+			if(err) throw err;
+			console.log(ans[0]);
+			res(ans[0]);
+		});
 	});
 });
