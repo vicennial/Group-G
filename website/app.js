@@ -103,3 +103,13 @@ app.post('/MainPage', function(req, res)
 		}
 	});
 });
+
+//Handing request from server to run ML algorithm on data
+io.on('connection', function (client) {
+	client.on('getpred', function (data, res) {
+		console.log("Prediction Request Recieved!");
+		console.log(data);
+		var pred="True";
+		res(pred);
+	});
+});
