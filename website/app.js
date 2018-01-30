@@ -111,13 +111,14 @@ io.on('connection', function (client) {
 	client.on('getpred', function (data, res) {
 		console.log("Prediction Request Recieved!");
 		console.log(data);
-		var options = {
-			args: data
-		};
-		py.run('test.py',options,function(err,ans){
+		var pyshell=new py('test.py',{mode:'text'});
+		pyshell.stdout.on('data',function(message){
+			message = message.replace(/(\r\n|\n|\r)/gm, "");
+			console.log("message is:"+message);
+			res(message);
+		});
+		pyshell.send(data).end(function(err){
 			if(err) throw err;
-			console.log(ans[0]);
-			res(ans[0]);
 		});
 	});
 });
