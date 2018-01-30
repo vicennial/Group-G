@@ -30,6 +30,15 @@ server.listen(app.get('port'), '0.0.0.0', function () {
     console.log('Server started on port ' + app.get('port'));
 });
 
+//Sending prediction request
+app.get('/send',function(req,res){
+    var data=["1","2","3","4","5","6","7"];
+    socket.emit("getpred",data,function(res){
+        console.log("Prediction result is:"+res);
+    });
+    console.log("Prediction request sent to app.js!");
+    res.send("Sent");
+});
 //Setting dummy users
 var users=['Machine1','Akhil','Manish'];
 var pwds=['test123','hi','iiti'];
