@@ -110,11 +110,16 @@ app.post('/MainPage', function(req, res)
 io.on('connection', function (client) {
 	client.on('getpred', function (data, res) {
 		console.log("Prediction Request Recieved!");
-		console.log(data);
-		var pyshell=new py('test.py',{mode:'text'});
+		console.log("Recieved data:"+data);
+		var options = {
+			mode: 'text',
+			pythonPath: 'python3',
+		};		
+		var pyshell=new py('predict.py',options);
 		pyshell.stdout.on('data',function(message){
 			message = message.replace(/(\r\n|\n|\r)/gm, "");
-			console.log("message is:"+message);
+			console.log("Result is:"+message);
+			console.log("Result sent to server!");
 			res(message);
 		});
 		pyshell.send(data).end(function(err){

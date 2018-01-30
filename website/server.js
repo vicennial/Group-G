@@ -32,9 +32,9 @@ server.listen(app.get('port'), '0.0.0.0', function () {
 
 //Sending prediction request
 app.get('/send',function(req,res){
-    var data=["Hi","Bye","Cry"];
+    var data=["1","2","3","4","5","6","7"];
     socket.emit("getpred",data,function(res){
-        console.log(res);
+        console.log("Prediction result is:"+res);
     });
     console.log("Prediction request sent to app.js!");
     res.send("Sent");
