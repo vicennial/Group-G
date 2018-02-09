@@ -6,6 +6,17 @@
         </title>
     </head>
     <body>
-    <h1>The search key is :<%=title%></h1>
+    <h1>Search results are :<br/>
+        <%
+            for(var i=0;i<title.length;i++){
+        %>
+            username:
+            <%=title[i].username %><br/>
+            type:
+            <%=title[i].type %><br/>
+        <%
+            }
+        %>
+    </h1>
     </body>
 </html>
