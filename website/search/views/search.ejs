@@ -55,14 +55,26 @@
             </thead>
             <tbody>
             <%
-                for(var i=0;i<title.length;i++){
+                // Showing results that similar to search key
+                for(var i=0;i<result1.length;i++){
             %>
             <tr>
-                <td><%=title[i].username %></td>
-                <td><%=title[i].type %></td>
+                <td><%=result1[i].username %></td>
+                <td><%=result1[i].type %></td>
             </tr>
             <%
                 }
+            %>
+            <%
+                // Showing rest of rows from collection
+                for(var i=0;i<result2.length;i++){
+            %>
+            <tr>
+                <td><%=result2[i].username %></td>
+                <td><%=result2[i].type %></td>
+            </tr>
+            <%
+            }
             %>
             </tbody>
         </table>

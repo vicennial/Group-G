@@ -62,16 +62,28 @@ app.use('/search',urlencodedParser,function(req, res, next) {
         var part_key=search_key.substr(0,length);
         var part_key_ending=search_key.substr(length-1,search_key.length-1);
         // querying database
+       //sorting collection according to search key similarity and alphabetical order of username
        dbo.collection("machine_types").aggregate(
            [
                { $match: { $text: { $search: search_key } } },
                { $sort: { score: { $meta: "textScore" }, username: 1 } }
            ]
        );
+       // Querying for data that are similar to search key
         dbo.collection("machine_types").find({$or:[{$text: {$search: search_key,$caseSensitive: false}},{ username: { $regex: part_key_ending, $options : "i"   } }, { username: { $regex: part_key, $options : "i" } }]}).toArray(function(err, result) {
             if (err) throw err;
-            db.close();
-            res.render('search', { title: result,username:search_key });
+            var res_length=result.length;
+            var arr=new Array("1");
+            for(var i=1;i<=res_length;i++){
+                arr[i]=result[i-1].username;
+            }
+            // Querying for data that are not similar to search key
+            dbo.collection("machine_types").find({ username: { $nin: arr } }).toArray(function(err, result2){
+                if (err) throw err;
+                db.close();
+                res.render('search', { result1: result,result2: result2,username:search_key });
+            });
+
         });
 
     });
