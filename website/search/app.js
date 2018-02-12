@@ -21,8 +21,8 @@ mongoose.Promise=global.Promise;
 // Insert data to mongodb
 /*
 var machine1=new machineDetails1({
-    username:"Printer",
-    type:"Printer"
+    username:"Printer 11",
+    type:"writer"
 
 });
 machine1.save();
@@ -62,6 +62,12 @@ app.use('/search',urlencodedParser,function(req, res, next) {
         var part_key=search_key.substr(0,length);
         var part_key_ending=search_key.substr(length-1,search_key.length-1);
         // querying database
+       dbo.collection("machine_types").aggregate(
+           [
+               { $match: { $text: { $search: search_key } } },
+               { $sort: { score: { $meta: "textScore" }, username: 1 } }
+           ]
+       );
         dbo.collection("machine_types").find({$or:[{$text: {$search: search_key,$caseSensitive: false}},{ username: { $regex: part_key_ending, $options : "i"   } }, { username: { $regex: part_key, $options : "i" } }]}).toArray(function(err, result) {
             if (err) throw err;
             db.close();
