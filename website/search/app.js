@@ -71,7 +71,7 @@ app.use('/search',urlencodedParser,function(req, res, next) {
         dbo.collection("machine_types").find({$or:[{$text: {$search: search_key,$caseSensitive: false}},{ username: { $regex: part_key_ending, $options : "i"   } }, { username: { $regex: part_key, $options : "i" } }]}).toArray(function(err, result) {
             if (err) throw err;
             db.close();
-            res.render('search', { title: result });
+            res.render('search', { title: result,username:search_key });
         });
 
     });

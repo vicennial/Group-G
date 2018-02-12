@@ -1,0 +1,12 @@
+.main_contant{
+    position: relative;
+    top: 75px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 75px;
+    max-width: 900px;
+    background-color:  rgb(175,183,194);
+    border: 1px solid inherit;
+    border-radius: 6px;
+}
