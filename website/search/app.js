@@ -9,23 +9,34 @@ var MongoClient = require('mongodb').MongoClient;
 
 var index = require('./routes/index');
 var machineDetails1=require('./models/model1');
-
+var machineDetails2=require('./models/model2');
 
 var app = express();
 
 //connect to mongo db
-
-mongoose.connect('mongodb://localhost/machine_details');
+//Using database Industry_4_0
+mongoose.connect('mongodb://localhost/Industry_4_0');
 mongoose.Promise=global.Promise;
 
 // Insert data to mongodb
+// Inserting data in machine_types collection
 /*
 var machine1=new machineDetails1({
-    username:"Printer 11",
-    type:"writer"
+    username:"Printer 111",
+    type:"printer"
 
 });
 machine1.save();
+// Inserting data in details collection
+var machine2=new machineDetails2({
+    username:"Printer 111",
+    property_1:"aPrinter 111 val_1",
+    property_2:"Printer 111 val_2",
+    property_3:"Printer 111 val_3",
+    property_4:"Printer 111 val_4"
+
+});
+machine2.save();
 */
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,7 +59,7 @@ app.use('/', index);
 app.use('/search',urlencodedParser,function(req, res, next) {
    MongoClient.connect('mongodb://localhost', function(err, db) {
         if (err) throw err;
-        var dbo = db.db("machine_details");
+        var dbo = db.db("Industry_4_0");
         var search_key=req.body.search;
         // Composite text index on username and type
         dbo.collection("machine_types").createIndex(
@@ -66,7 +77,7 @@ app.use('/search',urlencodedParser,function(req, res, next) {
        dbo.collection("machine_types").aggregate(
            [
                { $match: { $text: { $search: search_key } } },
-               { $sort: { score: { $meta: "textScore" }, username: 1 } }
+               { $sort: { username: 1 } }
            ]
        );
        // Querying for data that are similar to search key
@@ -78,7 +89,7 @@ app.use('/search',urlencodedParser,function(req, res, next) {
                 arr[i]=result[i-1].username;
             }
             // Querying for data that are not similar to search key
-            dbo.collection("machine_types").find({ username: { $nin: arr } }).toArray(function(err, result2){
+            dbo.collection("machine_types").find({ username: { $nin: arr } }).sort({username:1}).toArray(function(err, result2){
                 if (err) throw err;
                 db.close();
                 res.render('search', { result1: result,result2: result2,username:search_key });
