@@ -99,7 +99,22 @@ app.use('/search',urlencodedParser,function(req, res, next) {
 
     });
 });
+app.get('/details/:username',urlencodedParser,function(req, res, next) {
+    MongoClient.connect('mongodb://localhost', function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("Industry_4_0");      //Connecting to Industry_4_0 database
+        var details_search_key=req.params.username;        //receiving username
+        dbo.collection("details").find({ username: details_search_key}).toArray(function(err, result3){
+            if (err) throw err;
+            db.close();
+            console.log(result3);
+            res.render('details', { detailed_result:result3  });
+        });
 
+
+    });
+
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

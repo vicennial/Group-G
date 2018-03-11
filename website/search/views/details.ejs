@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Start of meta tags-->
+    <meta charset="utf-8" />
+    <meta name="description" content="Industry 4.0 IIT Indore" />
+    <!--description about the website-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Smart manufacturing,iiti,IIT Indore,industry 4.0,isw,search" />
+    <meta name="author" content="Souvik Mandal">
+    <!--/.End of meta tags-->
+    <title>
+        Details for "<%=detailed_result[0].username %>"
+    </title>
+    <link rel='stylesheet' href='/stylesheets/results.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+</head>
+<body>
+<div id="box1 col-xs-12">
+    <nav class="navbar navbar-inverse navbar_ab navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand temp changecolor" href="/" style="font-size: 220%">ISW</a>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="/" class="navbar_links_font">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--./End of header container-->
+</div>
+<div style="margin-top: 50px;">
+    <h1><%=detailed_result[0].username%></h1>
+    <h2 >property_1</h2>:<span style="margin-left: 100px;"><%=detailed_result[0].property_1%><br/></span>
+    <h2 >property_2</h2>:<span style="margin-left: 100px;"><%=detailed_result[0].property_2%><br/></span>
+    <h2 >property_3</h2>:<span style="margin-left: 100px;"><%=detailed_result[0].property_3%><br/></span>
+    <h2 >property_4</h2>:<span style="margin-left: 100px;"><%=detailed_result[0].property_4%><br/></span>
+</div>
+</body>
+</html>
