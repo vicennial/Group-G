@@ -23,17 +23,17 @@ mongoose.Promise=global.Promise;
 /*
 var machine1=new machineDetails1({
     username:"Printer 111",
-    type:"printer"
-
+    type:"printer",
+    tag:"Printer 111 aPrinter val_1 aPrinter val_2 aPrinter val_4 aPrinter val_3"
 });
 machine1.save();
 // Inserting data in details collection
 var machine2=new machineDetails2({
     username:"Printer 111",
-    property_1:"aPrinter 111 val_1",
-    property_2:"Printer 111 val_2",
-    property_3:"Printer 111 val_3",
-    property_4:"Printer 111 val_4"
+    property_1:"aPrinter val_1",
+    property_2:"Printer val_2",
+    property_3:"Printer val_3",
+    property_4:"Printer val_4"
 
 });
 machine2.save();
@@ -61,42 +61,63 @@ app.use('/search',urlencodedParser,function(req, res, next) {
         if (err) throw err;
         var dbo = db.db("Industry_4_0");
         var search_key=req.body.search;
-        // Composite text index on username and type
+        // Composite text index on tag
         dbo.collection("machine_types").createIndex(
             {
-                username: "text",
-                type:"text"
+                tag: "text"
 
             }
         );
         var length=search_key.length/2;
+        //first half of user input
         var part_key=search_key.substr(0,length);
+        //last half of user input
         var part_key_ending=search_key.substr(length-1,search_key.length-1);
-        // querying database
-       //sorting collection according to search key similarity and alphabetical order of username
-       dbo.collection("machine_types").aggregate(
-           [
-               { $match: { $text: { $search: search_key } } },
-               { $sort: { username: 1 } }
-           ]
-       );
-       // Querying for data that are similar to search key
-        dbo.collection("machine_types").find({$or:[{$text: {$search: search_key,$caseSensitive: false}},{ username: { $regex: part_key_ending, $options : "i"   } }, { username: { $regex: part_key, $options : "i" } }]}).toArray(function(err, result) {
-            if (err) throw err;
-            var res_length=result.length;
-            var arr=new Array("1");
-            for(var i=1;i<=res_length;i++){
-                arr[i]=result[i-1].username;
+        // initializing array to store username
+        var arr=new Array("1");
+		var arr2=new Array("1");
+	    var arr3=new Array("1");
+	    //querying for similar entry using $text with meta textscore
+        dbo.collection("machine_types").find({"$text": {"$search": search_key,$caseSensitive: false}},{textScore: {$meta: "textScore"}},{
+    	 sort: {textScore: {$meta: "textScore"}}}).toArray(function(err, result1) {
+		    if (err) throw err;
+		    //console.log("1111");
+		    for(var i=1;i<=result1.length;i++){
+                arr[i]=result1[i-1].username;
+                //console.log(arr[i]);
             }
-            // Querying for data that are not similar to search key
-            dbo.collection("machine_types").find({ username: { $nin: arr } }).sort({username:1}).toArray(function(err, result2){
+            //querying for data similar to first half of user input and which are not in previous query
+            dbo.collection("machine_types").find({$and :[{ username: { $nin: arr } }, { tag: { $regex: part_key, $options : "i" } }]}).toArray(function(err, result2){
                 if (err) throw err;
-                db.close();
-                res.render('search', { result1: result,result2: result2,username:search_key });
-            });
+                //console.log("222222");
+                for(var i=1;i<=result2.length;i++){
+	                arr2[i]=result2[i-1].username;
+	                //console.log(arr2[i]);
+	            }
+	            //querying for data similar to last half of user input and which are not in previous querys
+	            dbo.collection("machine_types").find({$and :[{ username: { $nin: arr } },{ username: { $nin: arr2 } }, { tag: { $regex: part_key_ending, $options : "i" } }]}).toArray(function(err, result3){
+                	if (err) throw err;
+	                //console.log("33333");
+	                for(var i=1;i<=result3.length;i++){
+		                arr3[i]=result3[i-1].username;
+		                //console.log(arr3[i]);
+		            }
+		            ////querying for data which doesnot come in any previous query
+		            dbo.collection("machine_types").find({$and :[{ username: { $nin: arr } },{ username: { $nin: arr3 } },{ username: { $nin: arr2 } }]}).toArray(function(err, result4) {
+		            	if(err) throw err;
+		            	db.close();
+		            	//console.log("4444444");
+		            	/*for(var i=0;i<result4.length;i++){
+	                		console.log(result4[i].username);
+	            		}*/
+	            		res.render('search', { result1:result1,result2:result2,result3:result3,result4:result4,username:search_key });
 
-        });
-
+		    		});
+	        });
+	        });
+            
+          
+  		});
     });
 });
 app.get('/details/:username',urlencodedParser,function(req, res, next) {
