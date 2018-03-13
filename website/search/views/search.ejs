@@ -77,47 +77,11 @@
 
             <tr>
                 <td>
-                <a href='details/<%= result2[i].username %>'>
+                <a href='details?username=<%= result2[i].username %>'>
                     <%=result2[i].username %>
                 </a>
                 </td>
                 <td><%=result2[i].type %></td>
-            </tr>
-
-
-            <%
-            }
-            %>
-            <%
-                // Showing rest of rows from collection
-                for(var i=0;i<result3.length;i++){
-            %>
-
-            <tr>
-                <td>
-                <a href='details/<%= result3[i].username %>'>
-                    <%=result3[i].username %>
-                </a>
-                </td>
-                <td><%=result3[i].type %></td>
-            </tr>
-
-
-            <%
-            }
-            %>
-            <%
-                // Showing rest of rows from collection
-                for(var i=0;i<result4.length;i++){
-            %>
-
-            <tr>
-                <td>
-                <a href='details/<%= result4[i].username %>'>
-                    <%=result4[i].username %>
-                </a>
-                </td>
-                <td><%=result4[i].type %></td>
             </tr>
 
 
