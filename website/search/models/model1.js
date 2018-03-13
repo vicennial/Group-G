@@ -14,6 +14,10 @@ var machineType= new schema({
     type:{
         type: String,
         required:true
+    },
+    tag:{
+        type: String,
+        required:true
     }
 });
 // Creating collection machineTypes
