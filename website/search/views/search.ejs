@@ -39,6 +39,14 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-right" action="/search" method="post">
+                            <div class="form-group">
+                              <input type="text" name="search" placeholder="Enter search keyword" class="form-control" minlength=2 >
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -46,6 +54,21 @@
     </div>
     <div class="container-fluid main_contant">
         <div style="color: black;font-family: 'Merriweather', serif;text-align: center"> <h1>Showing results for "<%=username %>"</h1></div>
+        <%
+            if(result1.length+result_2_1_types.length+result2.length+result3.length+result_2_2_types.length+result_2_3_types.length==0){
+        %>
+                <div style="font-size: 110%;">
+                    Your search - <b style="display: inline;"><%=username %> </b>- did not match any documents.<br/>
+                    Suggestions:<br/>
+                    <ul>
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try different keywords.</li>
+                        <li>Try more general keywords.</li>
+                    </ul>
+                </div>
+        <%
+                }else{
+        %>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -55,13 +78,13 @@
             </thead>
             <tbody>
             <%
-                // Showing results that similar to search key
+                // Showing results that similar to search key in "machine types" collection
                 for(var i=0;i<result1.length;i++){
             %>
             <tr>
                 <td>
                     <a href='details/<%= result1[i].username %>'>
-                        <%=result1[i].username %>
+                        <%=result1[i].username %> yyyy
                     </a>
                 </td>
 
@@ -71,7 +94,23 @@
                 }
             %>
             <%
-                // Showing rest of rows from collection
+                // Showing results that similar to search key in " details " collection
+                for(var i=0;i<result_2_1_types.length;i++){
+            %>
+            <tr>
+                <td>
+                    <a href='details/<%= result_2_1_types[i].username %>'>
+                        <%=result_2_1_types[i].username %>aaa
+                    </a>
+                </td>
+
+                <td><%=result_2_1_types[i].type %></td>
+            </tr>
+            <%
+                }
+            %>
+            <%
+                // Showing results which match first half of user input ,in "machine types" collection
                 for(var i=0;i<result2.length;i++){
             %>
 
@@ -89,7 +128,7 @@
             }
             %>
             <%
-                // Showing rest of rows from collection
+                // Showing results which match last half of user input ,in "machine types" collection
                 for(var i=0;i<result3.length;i++){
             %>
 
@@ -106,23 +145,47 @@
             <%
             }
             %>
+
+
+
+
+
             <%
-                // Showing rest of rows from collection
-                for(var i=0;i<result4.length;i++){
+                // Showing results which match first half of user input ,in "details" collection
+                for(var i=0;i<result_2_2_types.length;i++){
             %>
 
             <tr>
                 <td>
-                <a href='details/<%= result4[i].username %>'>
-                    <%=result4[i].username %>
+                <a href='details/<%= result_2_2_types[i].username %>'>
+                    <%=result_2_2_types[i].username %> bbbbb
                 </a>
                 </td>
-                <td><%=result4[i].type %></td>
+                <td><%=result_2_2_types[i].type %></td>
             </tr>
 
 
             <%
             }
+            %>
+            <%
+                // Showing results which match last half of user input ,in "details" collection
+                for(var i=0;i<result_2_3_types.length;i++){
+            %>
+
+            <tr>
+                <td>
+                <a href='details/<%= result_2_3_types[i].username %>'>
+                    <%=result_2_3_types[i].username %> ccccc
+                </a>
+                </td>
+                <td><%=result_2_3_types[i].type %></td>
+            </tr>
+
+
+            <%
+            }
+        }
             %>
             </tbody>
         </table>
