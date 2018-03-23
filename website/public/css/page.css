@@ -35,6 +35,24 @@
 .cls_history{
  	text-align: center;
 }
+.navbar-right>.nav-item>.user_options{
+  padding: 0px;
+}
+.navbar-right>.nav-item>.dropdown-menu{
+  border-radius: 20px;
+  text-decoration: none;
+}
+.navbar-right>.nav-item>.dropdown-menu>a{
+  border-radius: 20px;
+  text-decoration: none;
+  padding-left: 10px;
+  transition: font-size .2s;
+}
+.navbar-right>.nav-item>.dropdown-menu>a:hover{
+
+  font-size: 120%;
+  color:#CC0000;
+}
 .radioButton>label{
   font-size: 110%;
 }
