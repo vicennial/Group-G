@@ -10,10 +10,13 @@ var MongoStore = require('connect-mongo')(session);
 var router = express.Router();
 var Schema = mongoose.Schema;
 var cookieParser = require('cookie-parser');
+
 var uid;
+
 //Python Shell
 var py = require('python-shell');
-//creating server
+
+//Server Parameters
 var server = require('http').createServer(app);
 var io=require('socket.io')(server);
 var socket = require('socket.io-client')('http://localhost:3100/');
@@ -23,6 +26,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 //Read Cookie
 app.use(cookieParser());
+
+//Prevent Direct Access to HTML Files 
+app.get(/.*html$/, function (req, res) {
+  res.redirect('/')
+});
+
+app.get('/',function(req,res)
+{
+	if ((req.cookies['UserID'] == 'null')||(req.cookies['UserID'] == null)) {
+		res.sendFile(path.join(__dirname+'/views/index.html'));
+	} else {
+		res.redirect('/machine');
+	}
+    //res.render('index');
+});
+
 // serves static files from public
 app.use(express.static(path.join(__dirname, 'public')));
 // serves files frow views
@@ -38,22 +57,16 @@ server.listen(app.get('port'), '0.0.0.0', function () {
     console.log('Server started on port ' + app.get('port'));
 });
 
+
+
 //Body Parser : Print to Log the Value of Selected Machine State
 app.post("/SendState", function(req, res) {
-	var obj=req.body;
-	obj.machine=uid;
-  console.log(JSON.stringify(obj));
-  socket.emit("state",obj);
-  res.send(req.body);
+	var obj		= req.body;
+	obj.machine = uid;
+  	console.log(JSON.stringify(obj));
+  	socket.emit("state",obj);
+  	res.send(req.body);
 });
-
-
-app.get('/',function(req,res)
-{
-	res.redirect('index.html');
-    //res.render('index');
-});
-
 
 // app.get('/MainPage',function(req,res)
 // {
@@ -66,45 +79,52 @@ app.get('/',function(req,res)
 // 	}
 // });
 
+
 app.get('/Logout', function(req,res) {
 	res.clearCookie("UserID");
-	res.redirect('index.html');
+	res.redirect('/');
 });
 
 app.get('/machine',function(req,res)
 {
-	console.log("Redirect");
-	res.redirect('index.html');
+	if ((req.cookies['UserID'] == 'null')||(req.cookies['UserID'] == null)) {
+		res.redirect('/');
+	} else {
+		res.sendFile(path.join(__dirname+'/views/machine.html'));
+	}
 });
 
-app.get('/machine.html',function(req,res)
-{
-	console.log("Redirect");
-	res.redirect('index.html');
-});
+
+
 socket.on('connect', function () {
 	console.log("App.js Socket Connected");
 });
+
+
 app.post('/MainPage', function(req, res)
 {
-	var data={};
-	data.UserID=req.body.uid;
-	data.pwd=req.body.pwd;
-	var user_id=data.UserID;
+	var data    = {};
+	data.UserID = req.body.uid;
+	data.pwd    = req.body.pwd;
+	var user_id = data.UserID;
+
 	// console.log(data);
-	socket.emit("login",data,function(data){
-		if(data=="True"){
+
+	socket.emit("login",data,function(data) {
+		if(data=="True") {
 			console.log("Login successfull!");
 			uid=user_id;
-			res.redirect('/machine.html');
-		}
-		else{
+			res.cookie('UserID', uid);
+			res.redirect('/machine');
+		} else {
 			console.log("Login attempt failed!");
 			uid='null';
-			res.redirect('/index.html');
+			res.cookie('UserID', 'null');
+			res.redirect('/');
 		}
 	});
 });
+
 
 //Handing request from server to run ML algorithm on data
 io.on('connection', function (client) {
