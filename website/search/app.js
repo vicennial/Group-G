@@ -22,17 +22,17 @@ mongoose.Promise=global.Promise;
 // Inserting data in machine_types collection
 /*
 var machine1=new machineDetails1({
-    username:"Machine_1",
-    type:"CNC"
+    username:"Printer_2",
+    type:"3D Printer"
 });
 machine1.save();
 // Inserting data in details collection
 var machine2=new machineDetails2({
-    username:"Machine_1",
-    property_1:"Machine_1_P_1",
-    property_2:"Machine_1_P_2",
-    property_3:"Machine_1_P_3",
-    property_4:"Machine_1_P_4"
+    username:"Printer_2",
+    property_1:"Printer_2_P_1",
+    property_2:"Printer_2_P_2",
+    property_3:"Printer_2_P_3",
+    property_4:"Printer_2_P_4"
 
 });
 machine2.save();
