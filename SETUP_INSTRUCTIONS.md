@@ -50,3 +50,7 @@
 - Navigate to `http://localhost:3100/send`
 - This Sends the Input Parameter to local Server
 - The Corresponding Prediction is echoed in the Terminal window.
+---
+### 6. Search Functionality
+
+- Refer [here](Search_Instructions.pdf).

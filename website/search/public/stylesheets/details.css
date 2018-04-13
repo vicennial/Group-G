@@ -1,15 +1,3 @@
-.main_contant{
-    position: relative;
-    top: 75px;
-    padding-bottom: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: 75px;
-    max-width: 900px;
-    border: 1px solid inherit;
-    border-radius: 6px;
-}
-
 @import url(https://fonts.googleapis.com/css?family=Cabin:400);
 
 .webdesigntuts-workshop form {
