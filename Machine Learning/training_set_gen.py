@@ -28,6 +28,12 @@ files 				= glob.glob(fpath)
 
 i					= 0
 
+if (files):
+	print ("Parsing Files...")
+else:
+	print ("Files not Found!")
+	quit()
+
 
 #Read X Values and Compute Mean
 for file in sorted(files):
