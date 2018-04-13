@@ -28,6 +28,10 @@
 ### 4. Open the webpage
 
 - Navigate to `http://localhost:3500/` in browser
+- Login with username and Password
+- This opens the Machine Status Page
+- Select the corresponding status which updates the status and sends the data to ISW Server
+- Click on User Icon in Navigation Bar and click Logout
 
 ---
 ### 5. Machine Learning Prediction
@@ -50,6 +54,9 @@
 - Navigate to `http://localhost:3100/send`
 - This Sends the Input Parameter to local Server
 - The Corresponding Prediction is echoed in the Terminal window.
+
+- Refer [Machine Learning Readme](https://github.com/vicennial/Group-G/blob/master/Machine%20Learning/README.md) for more details
+
 ---
 ### 6. Search Functionality
 
