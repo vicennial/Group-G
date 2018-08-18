@@ -8,3 +8,7 @@ Client : <a href='http://bklad.webs.com/'>Dr. Bhupesh Kumar Lad</a>
 <b>Aim</b><br>
 To develop a **dynamic web portal** for the **Centre for Research in Smart Engineering, IIT Indore**.
 <br>
+
+## Documentation
+* ![Software Requirements Specification](/Documentation/Software-Requirements-Specification-V_1.pdf)
+* ![Setup Instructions](SETUP_INSTRUCTIONS.md)
