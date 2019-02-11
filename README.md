@@ -10,5 +10,8 @@ To develop a **dynamic web portal** for the **Centre for Research in Smart Engin
 <br>
 
 ## Documentation
-* ![Software Requirements Specification](/Documentation/Software-Requirements-Specification-V_1.pdf)
-* ![Setup Instructions](SETUP_INSTRUCTIONS.md)
+* [Software Requirements Specification](/Documentation/Software-Requirements-Specification-V_1.pdf)
+* [Setup Instructions](SETUP_INSTRUCTIONS.md)
+* [Testing Documentation](/Testing/)
+* [Presentation Files](/Presentation)
+      
